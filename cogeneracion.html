@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Cogeneración — Bolt Energy</title>
+  <meta name="description" content="Cogeneración con gas natural: estima un equipo de hasta 200 kW o haz el pre-diagnóstico de tu planta para un proyecto de ~0.5 MW.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header class="encabezado">
+  <div class="contenedor">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#22c870" d="M13.5 2 4 13.5h6.5L9 22l11-12.5h-6.8z"/></svg>
+      Bolt <span>Energy</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="cotizador.html">Cotizador</a>
+      <a href="financiamiento.html">Financiamiento</a>
+      <a href="preguntas.html">Preguntas</a>
+      <a class="nav__wa" data-wa href="#" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="contenedor">
+    <div id="impresion-encabezado"></div>
+    <p class="kicker">Cogeneración</p>
+    <h1 style="font-size:clamp(1.8rem,5vw,2.6rem)">Genera tu energía con gas natural</h1>
+    <p class="sub">Para operaciones con consumo alto y constante. Elige el tamaño de tu caso.</p>
+    <div class="modo modo--hero" role="group" aria-label="Tamaño del proyecto">
+      <button type="button" id="modo-equipo" aria-pressed="true">Equipo hasta 200 kW</button>
+      <button type="button" id="modo-planta" aria-pressed="false">Planta industrial ~0.5 MW</button>
+    </div>
+  </div>
+</section>
+
+<main class="contenedor">
+  <!-- Equipo hasta 200 kW: estimado en vivo -->
+  <div class="cotizador-vivo" id="vista-equipo">
+    <form class="panel-datos" id="form-gen" novalidate>
+      <h2>Tu equipo</h2>
+      <div class="deslizador">
+        <div class="deslizador__cab">
+          <label for="carga">Carga que quieres cubrir</label>
+          <span class="valor"><input id="carga-num" type="number" min="1" aria-label="Carga en kilowatts"><span class="unidad">kW</span></span>
+        </div>
+        <input id="carga" type="range">
+      </div>
+      <p class="ayuda">Si no la conoces: revisa la demanda máxima (kW) en tu recibo de CFE.</p>
+
+      <div class="grupo">
+        <p class="grupo__titulo">¿Tienes gas natural de ducto?</p>
+        <div class="pastillas" role="radiogroup" aria-label="Gas natural de ducto">
+          <label><input type="radio" name="gas" value="si" checked><span>Sí</span></label>
+          <label><input type="radio" name="gas" value="no"><span>No</span></label>
+          <label><input type="radio" name="gas" value="no_se"><span>No sé</span></label>
+        </div>
+      </div>
+
+      <div class="deslizador">
+        <div class="deslizador__cab">
+          <label for="metros">Distancia de la toma de gas al equipo</label>
+          <span class="valor"><input id="metros-num" type="number" min="0" aria-label="Metros de tubería"><span class="unidad">m</span></span>
+        </div>
+        <input id="metros" type="range" min="0" max="100" step="1" value="10">
+      </div>
+      <p class="ayuda" id="metros-ayuda"></p>
+
+      <div class="grupo">
+        <p class="grupo__titulo">¿Gabinete contra ruido?</p>
+        <div class="pastillas" role="radiogroup" aria-label="Gabinete contra ruido">
+          <label><input type="radio" name="gabinete" value="no" checked><span>No</span></label>
+          <label><input type="radio" name="gabinete" value="si"><span>Sí</span></label>
+        </div>
+        <p class="ayuda">Recomendado si hay vecinos u oficinas cerca.</p>
+      </div>
+    </form>
+
+    <section class="resultados" id="res-equipo" aria-live="polite">
+      <div class="res-cab"><h2 style="margin:0">Tu estimado</h2></div>
+      <div class="avisos" id="gen-avisos"></div>
+
+      <div id="gen-ok">
+        <div class="resultados">
+          <div class="kpis">
+            <div class="kpi kpi--noche"><div class="etq">Equipo</div><div class="val" id="g-kw"></div><div class="det" id="g-kw-det"></div></div>
+            <div class="kpi"><div class="etq">Gas a plena carga</div><div class="val" id="g-gas"></div><div class="det">consumo por hora</div></div>
+            <div class="kpi"><div class="etq">Espacio</div><div class="val" id="g-m2"></div><div class="det">con ventilación</div></div>
+            <div class="kpi"><div class="etq">Mantenimiento</div><div class="val" id="g-mtto"></div><div class="det">al año, aparte</div></div>
+          </div>
+
+          <div class="grafica">
+            <h3>¿En qué se va la inversión? <small>MXN + IVA</small></h3>
+            <div class="apilada" id="g-apilada" aria-hidden="true"></div>
+            <table class="desglose" id="g-desglose"></table>
+            <div class="banda" id="g-banda"></div>
+            <p class="nota" style="margin:.6rem 0 0" id="g-iva"></p>
+          </div>
+
+          <div id="gen-acciones"></div>
+          <p class="nota no-imprimir" style="margin:0">El resultado es tuyo sin dejar datos. Solo te los pedimos para agendar la visita.</p>
+        </div>
+      </div>
+
+      <div class="grafica" id="gen-excede" hidden>
+        <h3>Tu carga pide un proyecto más grande</h3>
+        <p id="gen-excede-txt"></p>
+        <button type="button" class="btn btn--pri" id="ir-planta">Hacer el pre-diagnóstico industrial</button>
+      </div>
+
+      <p class="disclaimer">Estimado orientativo, no vinculante. No prometemos porcentajes de ahorro. La acometida de gas, la obra civil y los permisos se definen en la visita técnica.</p>
+    </section>
+  </div>
+
+  <!-- Planta industrial: pre-diagnóstico -->
+  <div class="cotizador-vivo" id="vista-planta" hidden>
+    <form class="panel-datos" id="form-cogen" novalidate>
+      <h2>Pre-diagnóstico de tu planta</h2>
+      <p class="nota" style="margin:.4rem 0 0">2 minutos. Te decimos si tu operación es candidata y un asesor te contacta.</p>
+
+      <div class="deslizador">
+        <div class="deslizador__cab">
+          <label for="gasto">Pago de luz al mes</label>
+          <span class="valor"><span class="unidad">$</span><input id="gasto-num" type="number" min="1000" aria-label="Pago mensual en pesos"></span>
+        </div>
+        <input id="gasto" type="range">
+      </div>
+
+      <label class="campo" for="demanda">Demanda máxima (kW)</label>
+      <input class="texto" id="demanda" name="demandaKw" type="number" min="0" inputmode="numeric" placeholder="Viene en tu recibo">
+      <label class="check" style="margin-top:.5rem"><input type="checkbox" name="noDemanda" id="no-demanda"><span>No la conozco</span></label>
+
+      <div class="grupo">
+        <p class="grupo__titulo">Horas de operación al día</p>
+        <div class="pastillas" role="radiogroup" aria-label="Horas de operación al día">
+          <label><input type="radio" name="horas" value="8"><span>8 h</span></label>
+          <label><input type="radio" name="horas" value="16" checked><span>16 h</span></label>
+          <label><input type="radio" name="horas" value="20-24"><span>20 a 24 h</span></label>
+        </div>
+      </div>
+
+      <div class="grupo fila">
+        <div><label class="campo" for="gas-planta">Gas natural</label>
+          <select id="gas-planta" name="gasPlanta">
+            <option value="si_ducto">Sí, tengo ducto</option>
+            <option value="red_cerca">Hay red cerca</option>
+            <option value="no">No hay</option>
+            <option value="no_se" selected>No sé</option>
+          </select>
+        </div>
+        <div><label class="campo" for="calor">¿Usas calor en tu proceso?</label>
+          <select id="calor" name="calor">
+            <option value="no_se" selected>No sé</option>
+            <option value="proceso">Calor de proceso</option>
+            <option value="vapor">Vapor</option>
+            <option value="agua_caliente">Agua caliente</option>
+            <option value="absorcion">Enfriamiento por absorción</option>
+            <option value="climatizacion">Climatización</option>
+            <option value="ninguno">Ninguno</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grupo fila">
+        <div><label class="campo" for="empresa">Empresa</label><input class="texto" id="empresa" name="empresa" autocomplete="organization"></div>
+        <div><label class="campo" for="ciudad-planta">Ciudad o parque industrial</label><input class="texto" id="ciudad-planta" name="ciudad"></div>
+      </div>
+
+      <div class="grupo">
+        <p class="grupo__titulo">Tus datos de contacto</p>
+        <div class="fila">
+          <div><label class="campo" for="nombre">Nombre</label><input class="texto" id="nombre" name="nombre" autocomplete="name" required></div>
+          <div><label class="campo" for="whatsapp">WhatsApp (10 dígitos)</label><input class="texto" id="whatsapp" name="whatsapp" inputmode="numeric" maxlength="10" autocomplete="tel-national" required></div>
+        </div>
+        <label class="check" style="margin-top:.75rem"><input type="checkbox" name="consentimiento" id="consentimiento" required>
+          <span>Acepto el <a href="aviso-de-privacidad.html" target="_blank">aviso de privacidad</a>.</span></label>
+      </div>
+
+      <p class="error" id="cogen-error" hidden></p>
+      <button class="btn btn--pri btn--ancho" type="submit" style="margin-top:1rem">Ver mi pre-diagnóstico</button>
+    </form>
+
+    <section class="resultados" aria-live="polite">
+      <div class="grafica" id="cogen-res" hidden>
+        <h3>Tu pre-diagnóstico</h3>
+        <div class="medidor-caja">
+          <svg class="medidor" id="medidor" viewBox="0 0 200 122" role="img">
+            <path class="fondo" d="M20 104 A80 80 0 0 1 180 104"/>
+            <path class="valor" id="medidor-valor" d="M20 104 A80 80 0 0 1 180 104" stroke-dasharray="0 252"/>
+            <text x="100" y="92" id="medidor-num">0</text>
+            <text class="de" x="100" y="112">de 100</text>
+          </svg>
+          <div>
+            <span id="cogen-semaforo"></span>
+            <p id="cogen-texto" style="margin:.75rem 0 0;font-weight:600"></p>
+          </div>
+        </div>
+        <ul class="factores" id="factores"></ul>
+        <div class="folio" id="cogen-folio"></div>
+      </div>
+
+      <div class="grafica referencia">
+        <h3>Ejemplo de proyecto documentado</h3>
+        <div class="refs" id="refs"></div>
+        <div class="plazos" id="plazos"></div>
+        <p class="fuente" id="ref-fuente"></p>
+      </div>
+
+      <div class="grafica">
+        <h3>Sobre el permiso <span class="badge-verificar">VERIFICAR con abogado antes de publicar</span></h3>
+        <p class="nota" style="margin:0">Como orientación: generación menor a 0.7 MW puede operar como generación distribuida sin permiso; 0.7 MW o más de autoconsumo suele requerir permiso. El equipo de referencia (~0.48–0.5 MW) está por debajo de 0.7 MW.</p>
+      </div>
+
+      <p class="disclaimer">Pre-diagnóstico de idoneidad. No es cotización. No prometemos % de ahorro, TIR ni payback. Las cifras de equipo son de un proyecto ejemplo y pueden cambiar.</p>
+    </section>
+  </div>
+</main>
+
+<section class="seccion seccion--noche">
+  <div class="contenedor">
+    <p class="kicker">Cómo funciona</p>
+    <h2>Electricidad y calor con el mismo gas</h2>
+    <div class="esquema" data-esquema="cogeneracion" style="margin-top:1.25rem"></div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="contenedor">
+    <nav class="pie__nav" aria-label="Más páginas">
+      <a href="residencial.html">Para tu casa</a>
+      <a href="comercial.html">Para tu negocio</a>
+      <a href="industrial.html">Para tu industria</a>
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="financiamiento.html">Financiamiento</a>
+      <a href="preguntas.html">Preguntas frecuentes</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <p>Estimados no vinculantes. No constituyen cotización, oferta ni asesoría.</p>
+    <p>Bolt Energy no es CFE. · <a href="aviso-de-privacidad.html">Aviso de privacidad</a> · <a href="terminos.html">Términos de uso</a></p>
+    <p>[DOMICILIO_PENDIENTE]</p>
+  </div>
+</footer>
+<a class="wa-flotante" data-wa href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#0e1b2c" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.5z"/></svg></a>
+<script type="module" src="js/cogeneracion.js"></script>
+</body>
+</html>

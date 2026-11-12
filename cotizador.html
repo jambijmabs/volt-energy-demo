@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Cotizador — Bolt Energy</title>
+  <meta name="description" content="Arma tu sistema de energía con paneles solares, baterías y Cogeneración. Propuesta sugerida según tu consumo, con inversión, ahorro y mensualidad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header class="encabezado">
+  <div class="contenedor">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#22c870" d="M13.5 2 4 13.5h6.5L9 22l11-12.5h-6.8z"/></svg>
+      Bolt <span>Energy</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="cotizador.html" aria-current="page">Cotizador</a>
+      <a href="financiamiento.html">Financiamiento</a>
+      <a href="preguntas.html">Preguntas</a>
+      <a class="nav__wa" data-wa href="#" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="contenedor">
+    <p class="kicker">Cotizador</p>
+    <h1 style="font-size:clamp(1.8rem,5vw,2.6rem)">Arma tu sistema con una o varias tecnologías</h1>
+    <p class="sub">Dinos cuánto pagas de luz y te proponemos la combinación ideal. Luego agrega o quita equipos y mira cómo cambia.</p>
+  </div>
+</section>
+
+<main class="contenedor">
+  <div id="impresion-encabezado"></div>
+  <div class="cotizador-vivo">
+    <form class="panel-datos" id="form-cot" novalidate>
+      <h2>Tus datos</h2>
+      <p class="nota" id="es-ejemplo" style="margin:.4rem 0 0">Arrancamos con un ejemplo. Cámbialo por tus datos.</p>
+
+      <div class="grupo">
+        <p class="grupo__titulo">Inmueble</p>
+        <div class="pastillas" role="radiogroup" aria-label="Tipo de inmueble">
+          <label><input type="radio" name="mercado" value="residencial" checked><span>Casa</span></label>
+          <label><input type="radio" name="mercado" value="comercial"><span>Negocio</span></label>
+          <label><input type="radio" name="mercado" value="industrial"><span>Industria</span></label>
+        </div>
+      </div>
+
+      <div class="grupo">
+        <p class="grupo__titulo">Consumo</p>
+        <label class="btn btn--sec btn--ancho subir">
+          <input class="sr-only" type="file" id="recibo-archivo" accept=".pdf,application/pdf,image/*">
+          Subir mi recibo de CFE (PDF)
+        </label>
+        <p class="ayuda" id="recibo-msg" hidden></p>
+        <p class="ayuda">Lo leemos en tu dispositivo; el archivo no se envía a ningún lado. O captura tus datos:</p>
+        <div class="modo" role="group" aria-label="Cómo quieres capturar tu consumo">
+          <button type="button" id="modo-rapido" aria-pressed="true">Sé cuánto pago</button>
+          <button type="button" id="modo-recibo" aria-pressed="false">Datos del recibo</button>
+        </div>
+        <div id="bloque-rapido">
+          <div class="deslizador">
+            <div class="deslizador__cab">
+              <label for="monto-mes">Pago de luz al mes</label>
+              <span class="valor"><span class="unidad">$</span><input id="monto-mes-num" type="number" min="100" step="50" aria-label="Pago mensual en pesos"></span>
+            </div>
+            <input id="monto-mes" type="range">
+          </div>
+          <p class="ayuda">Si pagas cada dos meses, divide tu recibo entre 2.</p>
+        </div>
+        <div id="bloque-recibo" hidden>
+          <div class="fila fila--3">
+            <div><label class="campo" for="kwh">kWh del periodo</label><input class="texto" id="kwh" name="kwhPeriodo" type="number" min="1" inputmode="numeric"></div>
+            <div><label class="campo" for="dias">Días</label><input class="texto" id="dias" name="diasPeriodo" type="number" min="28" max="62" inputmode="numeric"></div>
+            <div><label class="campo" for="monto">Total $</label><input class="texto" id="monto" name="montoPeriodo" type="number" min="0" inputmode="numeric"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grupo fila">
+        <div><label class="campo" for="ciudad">Ciudad</label><select id="ciudad" name="ciudad"></select></div>
+        <div><label class="campo" for="tarifa">Tarifa CFE</label>
+          <select id="tarifa" name="tarifa">
+            <option value="no_se" selected>No sé</option>
+            <option value="1">1</option>
+            <option value="1A-1F">1A a 1F</option>
+            <option value="DAC">DAC</option>
+            <option value="PDBT">PDBT</option>
+            <option value="GDMTO">GDMTO</option>
+            <option value="GDMTH">GDMTH</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="deslizador">
+        <div class="deslizador__cab">
+          <label for="m2">Espacio libre para paneles</label>
+          <span class="valor"><input id="m2-num" type="number" min="1" aria-label="Superficie en metros cuadrados"><span class="unidad">m²</span></span>
+        </div>
+        <input id="m2" type="range">
+      </div>
+      <p class="ayuda">Techo o terreno. El cálculo supone poca o nula sombra sobre los paneles.</p>
+
+      <div class="grupo">
+        <p class="grupo__titulo">¿Necesitas respaldo cuando se va la luz?</p>
+        <div class="pastillas" role="radiogroup" aria-label="Necesitas respaldo en apagones">
+          <label><input type="radio" name="apagones" value="no" checked><span>No</span></label>
+          <label><input type="radio" name="apagones" value="si"><span>Sí</span></label>
+        </div>
+      </div>
+
+      <div id="grupo-operacion" hidden>
+        <div class="grupo">
+          <p class="grupo__titulo">Horas de operación al día</p>
+          <div class="pastillas pastillas--chicas" role="radiogroup" aria-label="Horas de operación al día">
+            <label><input type="radio" name="horasOperacion" value="8"><span>8 h</span></label>
+            <label><input type="radio" name="horasOperacion" value="12" checked><span>12 h</span></label>
+            <label><input type="radio" name="horasOperacion" value="16"><span>16 h</span></label>
+            <label><input type="radio" name="horasOperacion" value="24"><span>24 h</span></label>
+          </div>
+        </div>
+        <div class="grupo">
+          <p class="grupo__titulo">¿Tienes gas natural de ducto?</p>
+          <div class="pastillas pastillas--chicas" role="radiogroup" aria-label="Gas natural de ducto">
+            <label><input type="radio" name="gas" value="si"><span>Sí</span></label>
+            <label><input type="radio" name="gas" value="no"><span>No</span></label>
+            <label><input type="radio" name="gas" value="no_se" checked><span>No sé</span></label>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <section class="resultados" id="resultados" aria-live="polite">
+      <div class="propuesta">
+        <p class="kicker">Propuesta sugerida</p>
+        <h2 id="propuesta-titulo"></h2>
+        <ul class="propuesta__razones" id="propuesta-razones"></ul>
+        <p class="nota" style="color:#aebbcc;margin:.75rem 0 0">Enciende o apaga cada tecnología para armar tu sistema.</p>
+      </div>
+      <div class="avisos" id="avisos"></div>
+
+      <article class="tec" id="tec-solar">
+        <header class="tec__cab">
+          <label class="interruptor" title="Incluir Paneles solares"><input type="checkbox" id="inc-solar" data-incluir="solar" aria-label="Incluir Paneles solares"><span></span></label>
+          <h3>Paneles solares</h3>
+          <strong class="tec__precio"><span id="pre-solar"></span> <small>+ IVA</small></strong>
+        </header>
+        <div class="tec__cuerpo" id="cuerpo-solar"></div>
+        <a class="tec__detalle no-imprimir" href="solar.html">Ver cálculo detallado →</a>
+      </article>
+      <article class="tec" id="tec-baterias">
+        <header class="tec__cab">
+          <label class="interruptor" title="Incluir Baterías de respaldo"><input type="checkbox" id="inc-baterias" data-incluir="baterias" aria-label="Incluir Baterías de respaldo"><span></span></label>
+          <h3>Baterías de respaldo</h3>
+          <strong class="tec__precio"><span id="pre-baterias"></span> <small>+ IVA</small></strong>
+        </header>
+        <div class="tec__controles">
+          <label>Respaldar <select id="bat-perfil" aria-label="Qué respaldar"></select></label>
+          <span id="bat-kw-caja" hidden><input class="texto" id="bat-kw" type="number" min="0.2" step="0.1" value="2" aria-label="Carga esencial en kW" style="width:6rem;min-height:40px"> kW</span>
+          <div class="pastillas pastillas--chicas" role="radiogroup" aria-label="Horas de respaldo">
+            <label><input type="radio" name="horasRespaldo" value="2" form="form-cot"><span>2 h</span></label>
+            <label><input type="radio" name="horasRespaldo" value="4" form="form-cot" checked><span>4 h</span></label>
+            <label><input type="radio" name="horasRespaldo" value="8" form="form-cot"><span>8 h</span></label>
+            <label><input type="radio" name="horasRespaldo" value="12" form="form-cot"><span>12 h</span></label>
+          </div>
+        </div>
+        <div class="tec__cuerpo" id="cuerpo-baterias"></div>
+        <a class="tec__detalle no-imprimir" href="baterias.html">Ver cálculo detallado →</a>
+      </article>
+      <article class="tec" id="tec-gas">
+        <header class="tec__cab">
+          <label class="interruptor" title="Incluir Cogeneración a gas"><input type="checkbox" id="inc-gas" data-incluir="gas" aria-label="Incluir Cogeneración a gas"><span></span></label>
+          <h3>Cogeneración a gas</h3>
+          <strong class="tec__precio"><span id="pre-gas"></span> <small>+ IVA</small></strong>
+        </header>
+        <div class="tec__controles">
+          <label>Tamaño <select id="gas-kw" aria-label="Tamaño del generador"></select></label>
+          <label>Precio del gas <input class="texto" id="gas-precio" type="number" min="1" step="1" aria-label="Precio del gas natural en pesos por GJ" style="width:6rem;min-height:40px;margin-left:.4rem"> MXN por GJ</label>
+          <span id="gas-extras" class="tec__controles" style="margin:0">
+            <label>Tubería de gas <input class="texto" id="gas-metros" type="number" min="0" step="1" aria-label="Metros de tubería de gas" style="width:5.5rem;min-height:40px;margin-left:.4rem"> m</label>
+            <label class="check" style="margin:0"><input type="checkbox" id="gas-gabinete"><span>Gabinete contra ruido</span></label>
+          </span>
+        </div>
+        <div class="tec__cuerpo" id="cuerpo-gas"></div>
+        <a class="tec__detalle no-imprimir" href="cogeneracion.html">Ver cálculo detallado →</a>
+      </article>
+
+      <div class="grafica" id="sin-nada" hidden>
+        <h3>Enciende al menos una tecnología</h3>
+        <p class="nota" style="margin:0">Así podemos sumar la inversión de tu sistema.</p>
+      </div>
+
+      <div class="resultados" id="totales">
+        <div class="kpis kpis--3">
+          <div class="kpi kpi--noche"><div class="etq">Inversión del sistema</div><div class="val" id="t-inv"></div><div class="det" id="t-inv-det"></div></div>
+          <div class="kpi"><div class="etq">Ahorro al mes</div><div class="val" id="t-ahorro"></div><div class="det" id="t-ahorro-det"></div></div>
+          <div class="kpi"><div class="etq">O en mensualidades de</div><div class="val" id="t-mensual"></div><div class="det" id="t-mensual-det"></div></div>
+        </div>
+        <div class="grafica">
+          <h3>Inversión total <small>MXN + IVA</small></h3>
+          <table class="desglose" id="t-desglose"></table>
+          <div class="banda" id="t-banda"></div>
+          <p class="nota" style="margin:.6rem 0 0" id="t-iva"></p>
+          <a class="btn btn--sec no-imprimir" id="ir-fin" href="financiamiento.html" style="margin-top:.75rem">Simular financiamiento</a>
+        </div>
+      </div>
+
+      <div class="grafica">
+        <h3>Así trabaja tu sistema</h3>
+        <div class="red red--compacta" id="red-cot"></div>
+      </div>
+
+      <div id="acciones"></div>
+      <p class="nota no-imprimir" style="margin:0">La propuesta es tuya sin dejar datos. Solo te los pedimos para agendar la visita.</p>
+      <p class="disclaimer">Estimado orientativo, no vinculante. No es cotización ni ingeniería. El cálculo de paneles supone una instalación con poca o nula sombra. El precio firme se entrega después de una visita técnica. La mensualidad es una simulación, no una oferta de crédito.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <nav class="pie__nav" aria-label="Más páginas">
+      <a href="residencial.html">Para tu casa</a>
+      <a href="comercial.html">Para tu negocio</a>
+      <a href="industrial.html">Para tu industria</a>
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="financiamiento.html">Financiamiento</a>
+      <a href="preguntas.html">Preguntas frecuentes</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <p>Estimados no vinculantes. No constituyen cotización, oferta ni asesoría.</p>
+    <p>Bolt Energy no es CFE. · <a href="aviso-de-privacidad.html">Aviso de privacidad</a> · <a href="terminos.html">Términos de uso</a></p>
+    <p>[DOMICILIO_PENDIENTE]</p>
+  </div>
+</footer>
+<a class="wa-flotante" data-wa href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#0e1b2c" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.5z"/></svg></a>
+<script type="module" src="js/cotizador.js"></script>
+</body>
+</html>

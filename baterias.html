@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Cotizador de baterías — Bolt Energy</title>
+  <meta name="description" content="Calcula cuánta batería necesitas para que no se apague lo importante cuando se va la luz, y cuánto cuesta. Resultados en vivo y en rangos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header class="encabezado">
+  <div class="contenedor">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#22c870" d="M13.5 2 4 13.5h6.5L9 22l11-12.5h-6.8z"/></svg>
+      Bolt <span>Energy</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="cotizador.html">Cotizador</a>
+      <a href="financiamiento.html">Financiamiento</a>
+      <a href="preguntas.html">Preguntas</a>
+      <a class="nav__wa" data-wa href="#" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="contenedor">
+    <div id="impresion-encabezado"></div>
+    <p class="kicker">Cotizador de baterías</p>
+    <h1 style="font-size:clamp(1.8rem,5vw,2.6rem)">¿Cuánta batería necesitas cuando se va la luz?</h1>
+    <p class="sub">Elige qué quieres mantener encendido y por cuántas horas. El resultado cambia al momento.</p>
+  </div>
+</section>
+
+<main class="contenedor">
+  <div class="cotizador-vivo">
+    <form class="panel-datos" id="form-bat" novalidate>
+      <h2>Tu respaldo</h2>
+
+      <div class="grupo">
+        <p class="grupo__titulo">¿Qué quieres mantener encendido?</p>
+        <div class="opciones-radio" role="radiogroup" aria-label="Qué quieres respaldar">
+          <label><input type="radio" name="perfil" value="basico"><span><strong>Lo básico</strong><small>Refri, luces, internet y cargadores · <b data-kw="basico"></b></small></span></label>
+          <label><input type="radio" name="perfil" value="casa" checked><span><strong>Toda la casa</strong><small>Sin aire acondicionado · <b data-kw="casa"></b></small></span></label>
+          <label><input type="radio" name="perfil" value="casa_aire"><span><strong>Casa con aire</strong><small>Incluye un minisplit · <b data-kw="casa_aire"></b></small></span></label>
+          <label><input type="radio" name="perfil" value="negocio"><span><strong>Mi negocio</strong><small>Según tu consumo mensual</small></span></label>
+        </div>
+        <label class="check" style="margin-top:.75rem"><input type="radio" name="perfil" value="manual" id="perfil-manual"><span>Ya sé cuántos kW quiero respaldar</span></label>
+
+        <div id="bloque-negocio" hidden>
+          <div class="deslizador">
+            <div class="deslizador__cab">
+              <label for="kwh-mes">Consumo al mes</label>
+              <span class="valor"><input id="kwh-mes-num" type="number" min="100" aria-label="Consumo mensual en kWh"><span class="unidad">kWh</span></span>
+            </div>
+            <input id="kwh-mes" type="range">
+          </div>
+          <label class="campo">Horas de operación al día</label>
+          <div class="pastillas pastillas--chicas" role="radiogroup" aria-label="Horas de operación al día">
+            <label><input type="radio" name="horasOperacion" value="8"><span>8 h</span></label>
+            <label><input type="radio" name="horasOperacion" value="12" checked><span>12 h</span></label>
+            <label><input type="radio" name="horasOperacion" value="24"><span>24 h</span></label>
+          </div>
+        </div>
+
+        <div id="bloque-manual" hidden>
+          <div class="deslizador">
+            <div class="deslizador__cab">
+              <label for="carga-kw">Carga a respaldar</label>
+              <span class="valor"><input id="carga-kw-num" type="number" min="0.1" step="0.1" aria-label="Carga en kilowatts"><span class="unidad">kW</span></span>
+            </div>
+            <input id="carga-kw" type="range">
+          </div>
+        </div>
+      </div>
+
+      <div class="grupo">
+        <p class="grupo__titulo">¿Por cuántas horas?</p>
+        <div class="pastillas" role="radiogroup" aria-label="Horas de respaldo">
+          <label><input type="radio" name="horasRespaldo" value="2"><span>2 h</span></label>
+          <label><input type="radio" name="horasRespaldo" value="4" checked><span>4 h</span></label>
+          <label><input type="radio" name="horasRespaldo" value="8"><span>8 h</span></label>
+          <label><input type="radio" name="horasRespaldo" value="12"><span>12 h</span></label>
+        </div>
+      </div>
+
+      <div class="grupo">
+        <p class="grupo__titulo">¿Ya tienes paneles solares?</p>
+        <div class="pastillas" role="radiogroup" aria-label="Ya tienes paneles solares">
+          <label><input type="radio" name="yaTieneSolar" value="si"><span>Sí</span></label>
+          <label><input type="radio" name="yaTieneSolar" value="no" checked><span>No</span></label>
+        </div>
+      </div>
+    </form>
+
+    <section class="resultados" id="resultados" aria-live="polite">
+      <div class="res-cab"><h2 style="margin:0">Tu estimado</h2></div>
+      <div class="avisos" id="avisos"></div>
+
+      <div class="kpis">
+        <div class="kpi kpi--noche"><div class="etq">Batería</div><div class="val" id="k-kwh"></div><div class="det" id="k-modulos"></div></div>
+        <div class="kpi"><div class="etq">Carga respaldada</div><div class="val" id="k-carga"></div><div class="det">uso simultáneo promedio</div></div>
+        <div class="kpi"><div class="etq">Te dura</div><div class="val" id="k-horas"></div><div class="det" id="k-pediste"></div></div>
+        <div class="kpi"><div class="etq">Inversor</div><div class="val" id="k-inv"></div><div class="det" id="k-inv-det"></div></div>
+      </div>
+
+      <div class="graficas-2">
+        <div class="grafica">
+          <h3>Tu banco de baterías <small id="mod-escala"></small></h3>
+          <div class="modulos" id="modulos" aria-hidden="true"></div>
+          <p class="nota" id="mod-nota" style="margin:.75rem 0 0"></p>
+        </div>
+        <div class="grafica descarga">
+          <h3>Así se va descargando</h3>
+          <div id="descarga"></div>
+          <p class="nota" style="margin:.25rem 0 0">Dejamos una reserva para cuidar la vida de la batería.</p>
+        </div>
+      </div>
+
+      <div class="grafica">
+        <h3>Inversión <small>MXN + IVA</small></h3>
+        <div class="apilada" id="apilada" aria-hidden="true"></div>
+        <table class="desglose" id="desglose"></table>
+        <div class="banda" id="banda"></div>
+        <p class="nota" style="margin:.6rem 0 0" id="con-iva"></p>
+      </div>
+
+      <div id="acciones"></div>
+      <p class="nota no-imprimir" style="margin:0">El resultado es tuyo sin dejar datos. Solo te los pedimos para agendar la visita.</p>
+
+      <div class="grafica">
+        <h3>¿Buscas bajar tu recibo en tarifa GDMTH?</h3>
+        <p class="nota" style="margin:0">Usar baterías para recortar la demanda en horario punta depende de tu curva de carga. Eso no lo estimamos en línea: lo revisamos en una visita técnica.</p>
+      </div>
+
+      <details class="grafica como">
+        <summary><strong>Cómo calculamos</strong></summary>
+        <table id="como"></table>
+      </details>
+
+      <p class="disclaimer">Estimado de respaldo orientativo. Cableado, ubicación, inversor y norma requieren visita técnica.</p>
+    </section>
+  </div>
+</main>
+
+<section class="seccion seccion--noche">
+  <div class="contenedor">
+    <p class="kicker">Cómo funciona</p>
+    <h2>Qué pasa cuando se va la luz</h2>
+    <div class="esquema" data-esquema="baterias" style="margin-top:1.25rem"></div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="contenedor">
+    <nav class="pie__nav" aria-label="Más páginas">
+      <a href="residencial.html">Para tu casa</a>
+      <a href="comercial.html">Para tu negocio</a>
+      <a href="industrial.html">Para tu industria</a>
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="financiamiento.html">Financiamiento</a>
+      <a href="preguntas.html">Preguntas frecuentes</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <p>Estimados no vinculantes. No constituyen cotización, oferta ni asesoría.</p>
+    <p>Bolt Energy no es CFE. · <a href="aviso-de-privacidad.html">Aviso de privacidad</a> · <a href="terminos.html">Términos de uso</a></p>
+    <p>[DOMICILIO_PENDIENTE]</p>
+  </div>
+</footer>
+<a class="wa-flotante" data-wa href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#0e1b2c" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.5z"/></svg></a>
+<script type="module" src="js/baterias.js"></script>
+</body>
+</html>

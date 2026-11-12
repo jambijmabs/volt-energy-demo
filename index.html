@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Bolt Energy</title>
+  <meta name="description" content="Paneles solares, baterías de respaldo y Cogeneración a gas. Conoce cómo funciona tu red de energía y calcula tu proyecto con rangos honestos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header class="encabezado">
+  <div class="contenedor">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#22c870" d="M13.5 2 4 13.5h6.5L9 22l11-12.5h-6.8z"/></svg>
+      Bolt <span>Energy</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="cotizador.html">Cotizador</a>
+      <a href="financiamiento.html">Financiamiento</a>
+      <a href="preguntas.html">Preguntas</a>
+      <a class="nav__wa" data-wa href="#" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Portada: qué hacemos y cómo trabaja la red -->
+  <section class="hero">
+    <div class="contenedor">
+      <div class="hero__intro" style="max-width:780px">
+        <p class="kicker">Solar · Baterías · Cogeneración</p>
+        <h1>Produce tu propia energía y <em>paga menos luz</em>.</h1>
+        <p class="sub">Instalamos paneles solares, baterías de respaldo y generadores a gas natural para casas, negocios e industria. Así trabajan juntos:</p>
+        <div class="hero__acciones">
+          <a class="btn btn--pri" href="cotizador.html">Calcular mi proyecto</a>
+          <a class="btn btn--sec" href="#soluciones">Conocer los equipos</a>
+        </div>
+      </div>
+      <div class="red" id="red-inicio"></div>
+    </div>
+  </section>
+
+  <!-- Los equipos -->
+  <section class="seccion" id="soluciones">
+    <div class="contenedor">
+      <p class="kicker">Los equipos</p>
+      <h2>Tres formas de producir y cuidar tu energía</h2>
+      <p class="sub">Qué es cada uno, qué necesita y para quién conviene.</p>
+      <div class="tarjetas tarjetas--3" style="margin-top:1.5rem">
+        <article class="tarjeta">
+          <svg class="ilus" viewBox="0 0 240 150" role="img" aria-label="Ilustración de un arreglo de paneles solares">
+            <rect width="240" height="150" rx="14" fill="#dff1fb"/>
+            <circle cx="202" cy="32" r="16" fill="#f5b82e"/>
+            <path d="M0 122h240v14a14 14 0 0 1-14 14H14a14 14 0 0 1-14-14z" fill="#b9d8b2"/>
+            <g fill="#1d3557" stroke="#8fa3bf" stroke-width="1.5">
+              <polygon points="52,50 88,50 80,80 44,80"/><polygon points="92,50 128,50 120,80 84,80"/><polygon points="132,50 168,50 160,80 124,80"/><polygon points="172,50 208,50 200,80 164,80"/>
+              <polygon points="43,84 79,84 71,114 35,114"/><polygon points="83,84 119,84 111,114 75,114"/><polygon points="123,84 159,84 151,114 115,114"/><polygon points="163,84 199,84 191,114 155,114"/>
+            </g>
+            <path d="M50 114v10M178 114v10" stroke="#5b6472" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <h3>Paneles solares</h3>
+          <p>Convierten la luz del sol en electricidad que usas al momento. Lo que sobra se entrega a CFE y cuenta a tu favor.</p>
+          <div class="chips"><span class="chip" id="sp-panel"></span><span class="chip" id="sp-panel-m2"></span><span class="chip">Trámite CFE incluido</span></div>
+          <dl class="ficha">
+            <div><dt>Reduce lo que compras a CFE</dt><dd class="si">Sí</dd></div>
+            <div><dt>Te respalda en apagones</dt><dd class="no">Solo con batería</dd></div>
+            <div><dt>Necesitas</dt><dd>Techo o terreno con sol</dd></div>
+            <div><dt>Ideal si</dt><dd>Pagas luz cada mes y tienes espacio</dd></div>
+          </dl>
+          <a class="btn btn--pri" href="cotizador.html#solar" style="margin-top:1rem">Cotizar solar</a>
+        </article>
+        <article class="tarjeta">
+          <svg class="ilus" viewBox="0 0 240 150" role="img" aria-label="Ilustración de un banco de baterías con su inversor">
+            <rect width="240" height="150" rx="14" fill="#eaf1e6"/>
+            <rect x="92" y="14" width="56" height="34" rx="5" fill="#f7f3ea" stroke="#0e1b2c" stroke-width="2"/>
+            <path d="M102 31c4-9 8-9 12 0s8 9 12 0 5-4 8-4" fill="none" stroke="#22c870" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M120 48v8" stroke="#0e1b2c" stroke-width="3"/>
+            <g fill="#0e1b2c"><rect x="74" y="56" width="92" height="24" rx="5"/><rect x="74" y="84" width="92" height="24" rx="5"/><rect x="74" y="112" width="92" height="24" rx="5"/></g>
+            <g fill="#22c870"><rect x="84" y="65" width="46" height="6" rx="3"/><rect x="84" y="93" width="46" height="6" rx="3"/><rect x="84" y="121" width="30" height="6" rx="3"/></g>
+            <g fill="#f5b82e"><circle cx="152" cy="68" r="3.5"/><circle cx="152" cy="96" r="3.5"/><circle cx="152" cy="124" r="3.5"/></g>
+          </svg>
+          <h3>Baterías de respaldo</h3>
+          <p>Guardan energía y entran solas cuando se va la luz, para que no se apague lo importante: refri, internet, bombas, cajas.</p>
+          <div class="chips"><span class="chip" id="sp-bat"></span><span class="chip">2 a 12 h de respaldo</span><span class="chip" id="sp-bat-m2"></span></div>
+          <dl class="ficha">
+            <div><dt>Reduce lo que compras a CFE</dt><dd class="no">No por sí sola</dd></div>
+            <div><dt>Te respalda en apagones</dt><dd class="si">Sí, de 2 a 12 horas</dd></div>
+            <div><dt>Necesitas</dt><dd>Un muro o piso bajo techo</dd></div>
+            <div><dt>Ideal si</dt><dd>No puedes quedarte sin luz</dd></div>
+          </dl>
+          <a class="btn btn--pri" href="cotizador.html#baterias" style="margin-top:1rem">Cotizar baterías</a>
+        </article>
+        <article class="tarjeta">
+          <svg class="ilus" viewBox="0 0 240 150" role="img" aria-label="Ilustración de un generador a gas natural">
+            <rect width="240" height="150" rx="14" fill="#f3ece0"/>
+            <path d="M0 126h240v10a14 14 0 0 1-14 14H14a14 14 0 0 1-14-14z" fill="#d9cdb8"/>
+            <g fill="#c9d3df"><circle cx="64" cy="22" r="7"/><circle cx="76" cy="12" r="5"/></g>
+            <rect x="58" y="32" width="11" height="30" fill="#5b6472"/>
+            <rect x="40" y="58" width="146" height="64" rx="6" fill="#24426a" stroke="#0e1b2c" stroke-width="2"/>
+            <path d="M52 72h58M52 82h58M52 92h58M52 102h58M52 112h58" stroke="#8fa3bf" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="124" y="70" width="50" height="30" rx="3" fill="#f7f3ea"/>
+            <circle cx="136" cy="85" r="5" fill="#22c870"/><path d="M148 80h18M148 90h12" stroke="#5b6472" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="34" y="120" width="158" height="8" rx="2" fill="#3c4654"/>
+            <path d="M240 108h-34v-14h-20" fill="none" stroke="#c9692f" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M216 64c3 5 8 8 8 14a8 8 0 0 1-16 0c0-4 2-6 4-8 0 3 1 5 3 5 0-4-1-7 1-11z" fill="#f08a4b"/>
+          </svg>
+          <h3>Cogeneración</h3>
+          <p>Un generador a gas natural produce tu electricidad en sitio y su calor se aprovecha para agua caliente, vapor o proceso.</p>
+          <div class="chips"><span class="chip" id="sp-gen"></span><span class="chip">Proyectos de ~0.5 MW</span><span class="chip">Gas natural de ducto</span></div>
+          <dl class="ficha">
+            <div><dt>Reduce lo que compras a CFE</dt><dd class="si">Sí, generas en tu sitio</dd></div>
+            <div><dt>Te respalda en apagones</dt><dd class="no">Según el diseño</dd></div>
+            <div><dt>Necesitas</dt><dd>Gas natural y espacio ventilado</dd></div>
+            <div><dt>Ideal si</dt><dd>Operas 16 h o más al día y tu recibo es alto</dd></div>
+          </dl>
+          <a class="btn btn--pri" href="cotizador.html#cogeneracion" style="margin-top:1rem">Cotizar Cogeneración</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo funciona: esquemas animados -->
+  <section class="seccion seccion--noche" id="como-funciona">
+    <div class="contenedor">
+      <p class="kicker">Paso a paso</p>
+      <h2>Sigue el camino de la energía</h2>
+      <p class="sub">Elige una solución y toca cada paso.</p>
+      <div class="modo modo--hero" role="group" aria-label="Solución" id="tabs-esquema" style="max-width:560px">
+        <button type="button" data-clave="solar" aria-pressed="true">Solar</button>
+        <button type="button" data-clave="baterias" aria-pressed="false">Baterías</button>
+        <button type="button" data-clave="cogeneracion" aria-pressed="false">Cogeneración</button>
+      </div>
+      <div class="esquema" id="esquema-inicio" style="margin-top:1.5rem"></div>
+      <div class="leyenda-flujos">
+        <span style="--c:var(--sol)">Luz del sol</span>
+        <span style="--c:var(--verde)">Energía que generas</span>
+        <span style="--c:#8fa3bf">Energía de CFE</span>
+        <span style="--c:#f08a4b">Gas</span>
+        <span style="--c:#e8705d">Calor</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Un día con paneles -->
+  <section class="seccion seccion--blanca">
+    <div class="contenedor">
+      <p class="kicker">Un día con paneles</p>
+      <h2>¿De dónde sale tu energía a cada hora?</h2>
+      <p class="sub">Mueve la hora y mira qué pasa en una casa con paneles.</p>
+      <div class="dia" style="margin-top:1.25rem">
+        <div id="dia-grafica"></div>
+        <div class="dia__horas" aria-hidden="true"><span>12 am</span><span>6 am</span><span>12 pm</span><span>6 pm</span><span>12 am</span></div>
+        <label for="dia-hora" class="ayuda" style="margin-top:.5rem">Hora del día</label>
+        <input id="dia-hora" type="range" min="0" max="23.5" step="0.5" value="13">
+        <div class="dia__texto" id="dia-texto" aria-live="polite"></div>
+        <div class="leyenda"><span class="l1">Solar que usas al momento</span><span class="l2">Sobrante que va a CFE</span><span class="l3">Lo que tomas de CFE</span></div>
+        <p class="nota" style="margin:.5rem 0 0">Ilustración de un día soleado. Tu consumo y tu generación reales cambian con la temporada y tus hábitos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calcula el tuyo -->
+  <section class="seccion" id="calcula">
+    <div class="contenedor">
+      <p class="kicker">Haz números</p>
+      <h2>Calcula tu proyecto en un minuto</h2>
+      <div class="calcula" style="margin-top:1.5rem">
+        <div class="mini" id="mini">
+          <h2>¿Cuánto podrías ahorrar con paneles?</h2>
+          <div class="pastillas pastillas--chicas" role="radiogroup" aria-label="Tipo de inmueble">
+            <label><input type="radio" name="mini-mercado" value="residencial" checked><span>Casa</span></label>
+            <label><input type="radio" name="mini-mercado" value="comercial"><span>Negocio</span></label>
+            <label><input type="radio" name="mini-mercado" value="industrial"><span>Industria</span></label>
+          </div>
+          <div class="deslizador">
+            <div class="deslizador__cab">
+              <label for="mini-monto">Pago de luz al mes</label>
+              <span class="valor"><span class="unidad">$</span><input id="mini-monto-num" type="number" min="100" step="100" aria-label="Pago mensual en pesos"></span>
+            </div>
+            <input id="mini-monto" type="range">
+            <div class="deslizador__marcas"><span id="mini-min"></span><span id="mini-max"></span></div>
+          </div>
+          <div class="mini__res" aria-live="polite">
+            <div class="mini__dato"><div class="etq">Sistema</div><div class="val" id="mini-kwp">—</div></div>
+            <div class="mini__dato"><div class="etq">Paneles</div><div class="val" id="mini-paneles">—</div></div>
+            <div class="mini__dato" style="grid-column:1/-1"><div class="etq">Ahorro al mes</div><div class="val" id="mini-ahorro">—</div></div>
+            <div class="mini__dato" style="grid-column:1/-1"><div class="etq">Inversión aproximada</div><div class="val" id="mini-inv">—</div></div>
+          </div>
+          <a class="btn btn--pri btn--ancho" id="mini-ir" href="cotizador.html#solar">Afinar con mi recibo →</a>
+          <p class="nota" id="mini-nota" style="margin-top:.75rem"></p>
+        </div>
+
+        <div>
+          <p class="grupo__titulo">O dinos qué quieres resolver</p>
+          <div class="opciones">
+            <a class="opcion" href="cotizador.html#solar">
+              <span class="opcion__icono"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="6" fill="#f5b82e"/><g stroke="#f5b82e" stroke-width="2.4" stroke-linecap="round"><path d="M16 3v4M16 25v4M3 16h4M25 16h4M6.8 6.8l2.8 2.8M22.4 22.4l2.8 2.8M6.8 25.2l2.8-2.8M22.4 9.6l2.8-2.8"/></g></svg></span>
+              <span><strong>Bajar mi recibo de luz</strong><small>Cotizador de paneles solares</small></span>
+              <span class="opcion__flecha" aria-hidden="true">→</span>
+            </a>
+            <a class="opcion" href="cotizador.html#baterias">
+              <span class="opcion__icono"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="8" width="18" height="20" rx="3" fill="none" stroke="#22c870" stroke-width="2.4"/><rect x="12" y="4" width="8" height="4" rx="1" fill="#22c870"/><path d="M17 12l-4 6h4l-2 5" stroke="#22c870" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span><strong>No quedarme sin luz</strong><small>Cotizador de baterías de respaldo</small></span>
+              <span class="opcion__flecha" aria-hidden="true">→</span>
+            </a>
+            <a class="opcion" href="cogeneracion.html#industrial">
+              <span class="opcion__icono"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c3 5 8 8 8 14a8 8 0 0 1-16 0c0-4 2-6 4-8 0 3 1 5 3 5 0-4-1-7 1-11z" fill="none" stroke="#8fd9b0" stroke-width="2.4" stroke-linejoin="round"/></svg></span>
+              <span><strong>Mi planta paga más de $200 mil al mes</strong><small>Pre-diagnóstico de Cogeneración</small></span>
+              <span class="opcion__flecha" aria-hidden="true">→</span>
+            </a>
+            <a class="opcion" href="financiamiento.html">
+              <span class="opcion__icono"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="24" height="16" rx="3" fill="none" stroke="#f5b82e" stroke-width="2.4"/><path d="M4 14h24" stroke="#f5b82e" stroke-width="2.4"/><path d="M9 20h6" stroke="#f5b82e" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+              <span><strong>Pagarlo en mensualidades</strong><small>Modelos y simulador de financiamiento</small></span>
+              <span class="opcion__flecha" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quién -->
+  <section class="seccion seccion--noche" id="para-quien">
+    <div class="contenedor">
+      <p class="kicker">Para quién</p>
+      <h2>Empieza por un caso como el tuyo</h2>
+      <div class="opciones opciones--3" style="margin-top:1.5rem">
+        <a class="opcion" href="residencial.html">
+          <span><strong>Casa</strong><small>Baja tu recibo y ten respaldo en apagones</small></span>
+          <span class="opcion__flecha" aria-hidden="true">→</span>
+        </a>
+        <a class="opcion" href="comercial.html">
+          <span><strong>Negocio</strong><small>Locales, oficinas, restaurantes y naves chicas</small></span>
+          <span class="opcion__flecha" aria-hidden="true">→</span>
+        </a>
+        <a class="opcion" href="industrial.html">
+          <span><strong>Industria</strong><small>Naves y plantas con recibo alto</small></span>
+          <span class="opcion__flecha" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Números honestos -->
+  <section class="seccion seccion--blanca">
+    <div class="contenedor">
+      <p class="kicker">Números honestos</p>
+      <h2>Preferimos un rango real a una promesa bonita</h2>
+      <div class="honesto" style="margin-top:1.5rem">
+        <div class="honesto__col honesto__col--no">
+          <h3>Lo que no vas a ver aquí</h3>
+          <ul>
+            <li>Porcentajes de ahorro sin explicar el cálculo</li>
+            <li>Retornos garantizados</li>
+            <li>Un solo número que no depende de tu recibo</li>
+          </ul>
+        </div>
+        <div class="honesto__col honesto__col--si">
+          <h3>Lo que sí</h3>
+          <ul>
+            <li>Rangos bajo, base y alto calculados con tus datos</li>
+            <li>Cada supuesto visible: horas de sol, precio por kWp, IVA</li>
+            <li>Visita técnica antes de cualquier precio firme</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section class="seccion">
+    <div class="contenedor">
+      <p class="kicker">Proceso</p>
+      <h2>De tu estimado a tu instalación</h2>
+      <ol class="proceso" style="margin-top:1.5rem">
+        <li><h3>Estimado en línea</h3><p>2 minutos con tu recibo y los m² de tu techo.</p></li>
+        <li><h3>Visita técnica</h3><p>Revisamos techo, sombras, tablero y conexión.</p></li>
+        <li><h3>Propuesta firme</h3><p>Equipo, precio, plazos, garantías y opciones de financiamiento por escrito.</p></li>
+        <li><h3>Instalación y trámite</h3><p>Instalamos y gestionamos el medidor bidireccional con CFE.</p></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <nav class="pie__nav" aria-label="Más páginas">
+      <a href="residencial.html">Para tu casa</a>
+      <a href="comercial.html">Para tu negocio</a>
+      <a href="industrial.html">Para tu industria</a>
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="financiamiento.html">Financiamiento</a>
+      <a href="preguntas.html">Preguntas frecuentes</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <p>Estimados no vinculantes. No constituyen cotización, oferta ni asesoría.</p>
+    <p>Bolt Energy no es CFE. · <a href="aviso-de-privacidad.html">Aviso de privacidad</a> · <a href="terminos.html">Términos de uso</a></p>
+    <p>[DOMICILIO_PENDIENTE]</p>
+  </div>
+</footer>
+<a class="wa-flotante" data-wa href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#0e1b2c" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.5z"/></svg></a>
+<script type="module" src="js/inicio.js"></script>
+</body>
+</html>
